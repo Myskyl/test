@@ -1,6 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
 name: CI
+env:
+  APP_NAME : "Flask"
 
 # Controls when the workflow will run
 on:
@@ -17,10 +19,18 @@ on:
 jobs:
   my-test:
     runs-on: ubuntu-latest
+    env:
+      var1: "This is var1"
 
     steps:
       - name: Run a one-line script
-        run: echo Hello, world! 
+        run: |
+          echo Hello, world! 
+          echo ${{ env.APP_NAME }}
+          echo ${{ env.var1 }}
+          echo ${{ $Local }}
+        env:
+          Local: "This is local var"
       
 
   # This workflow contains a single job called "build"
